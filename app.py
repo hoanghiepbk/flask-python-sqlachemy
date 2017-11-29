@@ -30,7 +30,7 @@ app = Flask(__name__)
 
 
 
-app.config['SECRET_KEY'] = 'nguyendactoankmapydev'
+app.config['SECRET_KEY'] = 'kmapydev'
 
 db_path = os.path.join(os.path.dirname(__file__), 'database.db')
 
