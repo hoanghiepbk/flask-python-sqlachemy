@@ -1,0 +1,122 @@
+
+{% extends "bootstrap/base.html" %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+
+
+
+{% block title %}
+
+Result Book
+
+{% endblock %}
+
+
+
+{% block styles %}
+
+{{super()}}
+
+<link rel="stylesheet" href="{{url_for('.static', filename='dashboard.css')}}">
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+      <div class="container-fluid">
+
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+            <span class="sr-only">Toggle navigation</span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+            <span class="icon-bar"></span>
+
+          </button>
+
+          <a class="navbar-brand" href='#'>PROJECT INTERNS</a>
+
+        </div>
+
+        <div id="navbar" class="navbar-collapse collapse">
+
+          <ul class="nav navbar-nav navbar-right">
+
+            <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+
+            <li><a href="{{ url_for('create') }}">Create</a></li>
+
+            <li><a href="{{ url_for('show') }}">Show</a></li>
+
+            <li><a href="{{ url_for('index') }}">Logout</a></li>
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </nav>
+
+    <div class="container-fluid">
+
+      <div class="row"></div>
+
+    </div>
+
+
+
+    <div class="container">
+
+      <div class="starter-template">
+
+      <h3>List Books </h3>
+
+      {% for book in books %}
+
+      <form method="POST" action="/show">
+
+        <input type="hidden" value="{{book.title}}" name="oldtitle">
+
+        <input type="text" value="{{book.title}}" name="newtitle">
+
+        <input type="hidden" value="{{book.author}}" name="oldauthor">
+
+        <input type="text" value="{{book.author}}" name="newauthor">
+
+        <input type="hidden" value="{{book.price}}" name="oldprice">
+
+        <input type="text" value="{{book.price}}" name="newprice">
+
+        <input type="submit" value="Update">
+
+      </form>
+
+      <form method="POST" action="/">
+
+        <input type="hidden" value="{{book.title}}" name="title">
+
+        <input type="hidden" value="{{book.author}}" name="author">
+
+        <input type="hidden" value="{{book.price}}" name="price">
+
+        <input type="submit" value="Delete">
+
+      </form>
+
+      {% endfor %}
+
+      </div>
+
+    </div>
+
+{% endblock %}
